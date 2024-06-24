@@ -1,0 +1,109 @@
+ <!DOCTYPE html>
+<html>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+                       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            background:chartreuse
+
+        }
+                         
+        .To-DoList {
+            width: 100%;
+            align-items: center;
+            max-width: 540px;
+            margin: 100px auto 20px;
+            border-radius: 10px;
+                         padding: 40px 30px 70px;
+            background-color: white;
+        }
+            .To-DoList h2{
+                 text-align: center;
+                color: rgb(172, 0, 43);
+                display: flex;
+            }
+            .container{
+                display: flex;
+                align-items: center;
+                background-color: azure;
+                padding: 30px;
+                padding-left: 20px;
+                margin-bottom: 20px;
+            }
+        input{
+            border-radius: 80px;
+            padding: 14px;
+            flex:1;
+        font-weight: 25px;
+        background: transparent;
+    }
+    button{
+        border-radius: 40px;
+        border:none;
+        outline: none;
+        background-color: red;
+        padding: 10px 40px;
+        font-size: 15px;
+        font-display:bold;
+    }
+    ul li{
+        font-size: 15px;
+        padding: 12px 8px 12px 30px;
+        list-style: none;
+    }
+    ul li span{
+        top: 5px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 27px;
+        color: red;
+        text-align: center;
+        right: 0;
+        padding-right: 10px;
+
+    }
+    </style>
+    <body>
+        
+            <div class="To-DoList">
+          <h2> To-DoList</h2>
+          
+          <div class="container">
+            <input type="text" id="inputBox" placeholder="Add your list">
+            <button onclick="addTask()">Add</button>
+                 </div>
+                  <ul id="ListContainer">
+            <li>
+                                            </li>
+                  </ul>
+                  </div>
+                  <script>
+                    const inputBox=document.getElementById("inputBox")
+                    const ListContainer=document.getElementById("ListContainer")
+                    function addTask()
+                    {
+                        if(inputBox.value === ''){
+                            alert("You must write something");
+                        }
+                        else{
+                            let li=document.createElement("li")
+                            li.innerHTML=inputBox.value;
+                            ListContainer.appendChild(li);
+                            
+
+                            let span=document.createElement("span")
+                            span.innerHTML="\u00d7"
+                            li.appendChild(span)
+                            span.onclick = function() {
+                                li.remove();
+                            };
+                            
+                        }
+                    }
+
+                  </script>
+    </body>
+</html>

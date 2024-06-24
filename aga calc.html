@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        * {
+            box-sizing: inherit;
+        }
+        body {
+            background-color: darkorchid;
+            font-family: Verdana;
+            font-size: larger;
+        }
+        .calculator {
+            min-height: 70vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center; /* Center-align text within .calculator */
+        }
+        h1 span {
+            color: yellow;
+        }
+        .inputBox {
+            margin-top: 20px; 
+        }
+        .inputBox input {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 35px;
+        }
+        .inputBox button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-left: 10px;
+            background: yellow;
+            border-radius: 35px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: larger;
+            color: white;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="calculator">
+                <h1>Age<span> Calculator</span></h1>
+                <div class="inputBox">
+                    <input type="date" id="date">
+                    <button onclick="calculateAge()">Calculate</button>
+                </div>
+                <div id="result"></div> <!-- Result div added -->
+            </div>
+        </div>
+        <script>
+            function calculateAge() {
+                let userInput = document.getElementById("date").value;
+                let birthDate = new Date(userInput);
+                let today = new Date();
+
+                if (userInput === "" || birthDate > today) {
+                    document.getElementById("result").innerHTML = "Please enter a valid date.";
+                    return;
+                }
+
+                let birthYear = birthDate.getFullYear();
+                let birthMonth = birthDate.getMonth() + 1; // Months are zero-based
+                let birthDay = birthDate.getDate();
+
+                let currentYear = today.getFullYear();
+                let currentMonth = today.getMonth() + 1;
+                let currentDay = today.getDate();
+
+                let age = currentYear - birthYear;
+
+                if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDay < birthDay)) {
+                    age--;
+                }
+
+                document.getElementById("result").innerHTML = "Your age is " + age + " years.";
+            }
+        </script>
+    </body>
+</html>
